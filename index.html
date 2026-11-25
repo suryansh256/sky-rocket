@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="description" content="A notes app that automatically categorizes your thoughts as you write." />
+  <title>SortNote | Notes, organized automatically</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">✳</span><span>SortNote</span></div>
+      <button class="new-note" id="newNoteBtn">＋ <span>New note</span></button>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active" data-filter="All"><span>▦</span> All notes <span class="count" id="allCount">0</span></button>
+      <div class="side-label category-heading">SMART CATEGORIES</div>
+      <div id="categoryNav"></div>
+      <div class="sidebar-bottom">
+        <div class="privacy"><span class="privacy-dot"></span><div><b>Private by design</b><small>Your notes stay on this device.</small></div></div>
+        <button class="nav-item" id="installBtn" hidden><span>⇩</span> Install app</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">✳</span> SortNote</div>
+        <div class="breadcrumb">Workspace <span>/</span> <b id="currentView">All notes</b></div>
+        <div class="top-actions">
+          <label class="search"><span>⌕</span><input id="searchInput" placeholder="Search notes..." /></label>
+          <button class="avatar" title="Local workspace">S</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="page-heading">
+          <div><p class="eyebrow">YOUR SECOND BRAIN</p><h1 id="pageTitle">All notes</h1><p class="subtitle">Capture thoughts. SortNote handles the filing.</p></div>
+          <button class="primary-btn" id="headingNewBtn">＋ New note</button>
+        </div>
+
+        <section class="editor-card" id="editorCard">
+          <div class="editor-top">
+            <span class="writing-indicator"><i></i> QUICK CAPTURE</span>
+            <span class="auto-label">✦ Auto-categorizing</span>
+          </div>
+          <input id="noteTitle" class="title-input" placeholder="Give this note a title..." maxlength="100" />
+          <textarea id="noteBody" placeholder="Start writing... Try mentioning a topic like JavaScript, an exam, a meeting, or an idea."></textarea>
+          <div class="editor-footer">
+            <div class="detected"><span>Suggested category</span><strong id="detectedCategory">Unsorted</strong><small id="detectedReason">Start typing to detect a topic</small></div>
+            <button class="save-btn" id="saveBtn">Save note <span>↗</span></button>
+          </div>
+        </section>
+
+        <div class="notes-toolbar"><div><h2 id="listHeading">Recent notes</h2><span id="resultCount">0 notes</span></div><select id="sortSelect" aria-label="Sort notes"><option value="updated">Recently updated</option><option value="created">Recently created</option><option value="az">Title A–Z</option></select></div>
+        <div id="notesGrid" class="notes-grid"></div>
+        <div id="emptyState" class="empty-state"><div class="empty-icon">✎</div><h3>Your notes have room to grow.</h3><p>Create your first note. As you type, SortNote will suggest a category automatically.</p><button class="primary-btn" id="emptyNewBtn">Create a note</button></div>
+      </section>
+      <footer>SortNote <span>•</span> A calmer place for your thoughts</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
